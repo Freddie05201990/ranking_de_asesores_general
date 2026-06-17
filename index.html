@@ -1,10 +1,9 @@
-HTML
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ranking Cobranza — Semana 24</title>
+<title>Ranking Cobranza — Semana 25</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -13,7 +12,6 @@ HTML
     --green-light:  #388e3c;
     --green-bg1:    #e8f5e9;
     --green-bg2:    #f1f8e9;
-    --green-bg3:    #f9fbe9;
     --green-border: #a5d6a7;
     --red-bg:       #fff5f5;
     --red-text:     #c62828;
@@ -27,7 +25,6 @@ HTML
     --radius-md:    10px;
     --radius-lg:    14px;
     --shadow-sm:    0 1px 3px rgba(0,0,0,.07), 0 1px 2px rgba(0,0,0,.05);
-    --shadow-md:    0 4px 12px rgba(0,0,0,.08);
   }
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -135,14 +132,15 @@ HTML
   /* ── Content ── */
   .content { max-width: 900px; margin: 1.25rem auto 0; padding: 0 1rem; }
 
-  /* ── Section / team card ── */
-  .section { margin-bottom: 1.25rem; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); background: var(--white); }
+  /* ── Section / segment card ── */
+  .section { margin-bottom: 1.25rem; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); }
   .section-header {
     display: flex;
     align-items: center;
     gap: 12px;
     padding: 12px 16px;
     border-bottom: 1px solid rgba(0,0,0,.06);
+    background: var(--green-bg1);
   }
   .sh-icon { font-size: 20px; }
   .sh-info { flex: 1; }
@@ -158,11 +156,6 @@ HTML
     font-weight: 500;
     white-space: nowrap;
   }
-  .enc-jona  { background: #e8f5e9; }
-  .enc-jorge { background: #f1f8e9; }
-  .enc-ana   { background: #e0f2f1; }
-  .enc-ivan  { background: #e8f5e9; }
-  .enc-default { background: #f1f5f9; }
 
   /* ── Table ── */
   table { width: 100%; border-collapse: collapse; background: var(--white); }
@@ -179,6 +172,7 @@ HTML
   }
   thead th:nth-child(3),
   thead th:nth-child(4) { text-align: right; }
+  thead th:nth-child(5) { text-align: center; }
   tbody tr { border-bottom: .5px solid var(--gray-border); transition: background .1s; }
   tbody tr:last-child { border-bottom: none; }
   tbody tr:hover { background: #f7fdf7; }
@@ -189,6 +183,7 @@ HTML
   td { padding: 9px 14px; font-size: 13px; color: var(--text-main); vertical-align: middle; }
   td:nth-child(3),
   td:nth-child(4) { text-align: right; }
+  td:nth-child(5) { text-align: center; }
 
   .rank-badge {
     display: inline-flex; align-items: center; justify-content: center;
@@ -207,7 +202,17 @@ HTML
   .amt-zero { color: var(--red-text); }
   .cnt      { color: var(--text-muted); font-size: 13px; }
 
-  .no-results { padding: 2.5rem; text-align: center; color: var(--text-muted); font-size: 14px; background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); }
+  .turno-pill {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 9px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+  .turno-mat { background: #fff8e1; color: #f57f17; }
+  .turno-ves { background: #ede7f6; color: #5e35b1; }
+
+  .no-results { padding: 2.5rem; text-align: center; color: var(--text-muted); font-size: 14px; background: var(--white); border-radius: var(--radius-lg); }
 
   /* ── Footer ── */
   footer {
@@ -220,9 +225,9 @@ HTML
   }
 
   @media (max-width: 600px) {
-    .controls { flex-direction: column; align-items: stretch; }
+    .controls { flex-direction: column; }
     .search-wrap { width: 100%; }
-    thead th:nth-child(4), td:nth-child(4) { display: none; }
+    thead th:nth-child(5), td:nth-child(5) { display: none; }
   }
 </style>
 </head>
@@ -231,23 +236,24 @@ HTML
 <header>
   <div class="label">BAZ Forcados — Cobranza</div>
   <h1>Ranking de Recuperación</h1>
-  <p>Semana 24 · Por gestor y encargado de equipo</p>
+  <p>Semana 25 · Por gestor y segmento</p>
 </header>
 
 <div class="metrics-band" id="metrics"></div>
 
 <div class="controls">
-  <div class="btn-group" id="suc-btns">
-    <button class="active" onclick="setSuc('todas',this)">Todas</button>
-    <button onclick="setSuc('SORIA',this)">Soria</button>
-    <button onclick="setSuc('IZTAPALAPA',this)">Iztapalapa</button>
+  <div class="btn-group" id="seg-btns">
+    <button class="active" onclick="setSeg('todos',this)">Todos</button>
+    <button onclick="setSeg('5',this)">Segmento 5</button>
+    <button onclick="setSeg('6',this)">Segmento 6</button>
   </div>
-  <div class="btn-group" id="sort-btns">
-    <button class="active" onclick="setSort('rec',this)">Por recuperación</button>
-    <button onclick="setSort('cuentas',this)">Por cuentas</button>
+  <div class="btn-group" id="turno-btns">
+    <button class="active" onclick="setTurno('todos',this)">Todos los turnos</button>
+    <button onclick="setTurno('MATUTINO',this)">Matutino</button>
+    <button onclick="setTurno('VESPERTINO',this)">Vespertino</button>
   </div>
   <div class="search-wrap">
-    <input type="text" placeholder="🔍 Buscar gestor o encargado..." oninput="setSearch(this.value)" />
+    <input type="text" placeholder="🔍 Buscar gestor..." oninput="setSearch(this.value)" />
   </div>
 </div>
 
@@ -260,155 +266,95 @@ HTML
 
 <div class="content" id="ranking-root"></div>
 
-<footer>Generado automáticamente · Semana 24 · Proyecto BAZ Forcados</footer>
+<footer>Generado automáticamente · Semana 25 · Proyecto BAZ Forcados</footer>
 
 <script>
 const raw = [
-  {suc:'SORIA',enc:'JONATHAN RIVERA CUADRA',gestor:'Carlos Gabriel Garcia Porcayo',rec:86348.76,cuentas:72},
-  {suc:'SORIA',enc:'JONATHAN RIVERA CUADRA',gestor:'Wendy Diana Ramirez Medellin',rec:80016,cuentas:92},
-  {suc:'SORIA',enc:'JONATHAN RIVERA CUADRA',gestor:'Viridiana Gutierrez Cerda',rec:77797.96,cuentas:82},
-  {suc:'SORIA',enc:'JONATHAN RIVERA CUADRA',gestor:'Juan Carlos Garcia Cedeno',rec:75177,cuentas:83},
-  {suc:'SORIA',enc:'JONATHAN RIVERA CUADRA',gestor:'Jose Lopez Roque',rec:73112,cuentas:85},
-  {suc:'SORIA',enc:'JONATHAN RIVERA CUADRA',gestor:'Abigail Salinas Gregorio',rec:66790,cuentas:80},
-  {suc:'SORIA',enc:'JONATHAN RIVERA CUADRA',gestor:'Brian Yahir Escalante Gonzalez',rec:64172,cuentas:58},
-  {suc:'SORIA',enc:'JONATHAN RIVERA CUADRA',gestor:'Alan Osiel Sanchez Becerril',rec:62359,cuentas:43},
-  {suc:'SORIA',enc:'JONATHAN RIVERA CUADRA',gestor:'Claudia Ivett Porcayo Casas',rec:62252.52,cuentas:66},
-  {suc:'SORIA',enc:'JONATHAN RIVERA CUADRA',gestor:'Karina Araceli Carreron Lara',rec:58454,cuentas:18},
-  {suc:'SORIA',enc:'JONATHAN RIVERA CUADRA',gestor:'Juan Carlos Perez Hernandez',rec:57369,cuentas:78},
-  {suc:'SORIA',enc:'JONATHAN RIVERA CUADRA',gestor:'Christian Rosas Romero',rec:55135,cuentas:18},
-  {suc:'SORIA',enc:'JONATHAN RIVERA CUADRA',gestor:'Leonardo Collado Roble',rec:54205.10,cuentas:70},
-  {suc:'SORIA',enc:'JONATHAN RIVERA CUADRA',gestor:'Ana Lilia Ivonne Hernandez Garcia',rec:51313.55,cuentas:69},
-  {suc:'SORIA',enc:'JONATHAN RIVERA CUADRA',gestor:'Marcos Ramirez Hernandez',rec:50424,cuentas:34},
-  {suc:'SORIA',enc:'JONATHAN RIVERA CUADRA',gestor:'Aaron Herrera Galindo',rec:48253,cuentas:52},
-  {suc:'SORIA',enc:'JONATHAN RIVERA CUADRA',gestor:'Brandon Jael Garcia Porcayo',rec:38610,cuentas:43},
-  {suc:'SORIA',enc:'JONATHAN RIVERA CUADRA',gestor:'Diana Robles Garcia',rec:34385,cuentas:27},
-  {suc:'SORIA',enc:'JONATHAN RIVERA CUADRA',gestor:'Brenda Monserrat Zetina Flores',rec:27914,cuentas:28},
-  {suc:'SORIA',enc:'JONATHAN RIVERA CUADRA',gestor:'Dania Guadalupe Castro Xolalpa',rec:26327,cuentas:48},
-  {suc:'SORIA',enc:'JONATHAN RIVERA CUADRA',gestor:'Christian Yabeth Sanchez Garcia',rec:22209,cuentas:39},
-  {suc:'SORIA',enc:'JONATHAN RIVERA CUADRA',gestor:'Guillermo Rodriguez Ramirez',rec:20101,cuentas:11},
-  {suc:'SORIA',enc:'JONATHAN RIVERA CUADRA',gestor:'Luis Antonio Gomez Sanchez',rec:18666,cuentas:38},
-  {suc:'SORIA',enc:'JONATHAN RIVERA CUADRA',gestor:'Francisco Javier Cisneros Vazquez',rec:12948,cuentas:30},
-  {suc:'SORIA',enc:'JONATHAN RIVERA CUADRA',gestor:'Jose Edurado Lopez Cruz',rec:10889,cuentas:23},
-  {suc:'SORIA',enc:'JONATHAN RIVERA CUADRA',gestor:'Carlos Ariff Alcantara Vargas',rec:6627,cuentas:21},
-  {suc:'SORIA',enc:'JONATHAN RIVERA CUADRA',gestor:'Javier Cruz Rojas',rec:4323,cuentas:13},
-  {suc:'SORIA',enc:'JORGE EDUARDO MANRIQUEZ SALAS',gestor:'KELYN KRISTIER SAEZ',rec:93812.35,cuentas:48},
-  {suc:'SORIA',enc:'JORGE EDUARDO MANRIQUEZ SALAS',gestor:'Guadalupe Jazmin Rubio Romero',rec:93070,cuentas:63},
-  {suc:'SORIA',enc:'JORGE EDUARDO MANRIQUEZ SALAS',gestor:'DANIEL LARA PEDRO',rec:64689,cuentas:83},
-  {suc:'SORIA',enc:'JORGE EDUARDO MANRIQUEZ SALAS',gestor:'CLAUDIA PAMELA ARIAS ABONSA',rec:53255,cuentas:97},
-  {suc:'SORIA',enc:'JORGE EDUARDO MANRIQUEZ SALAS',gestor:'YADIRA MARTINEZ MORALES',rec:48300,cuentas:50},
-  {suc:'SORIA',enc:'JORGE EDUARDO MANRIQUEZ SALAS',gestor:'KARINA HERNANDEZ DIAZ',rec:36718,cuentas:28},
-  {suc:'SORIA',enc:'JORGE EDUARDO MANRIQUEZ SALAS',gestor:'MARIBEL NOHEMI GARCIA MENDOZA',rec:34047,cuentas:29},
-  {suc:'SORIA',enc:'JORGE EDUARDO MANRIQUEZ SALAS',gestor:'ALAIN PEREZ CABRERA',rec:27142,cuentas:47},
-  {suc:'SORIA',enc:'JORGE EDUARDO MANRIQUEZ SALAS',gestor:'LUIS ENRIQUE SIL VEGA',rec:27065,cuentas:14},
-  {suc:'SORIA',enc:'JORGE EDUARDO MANRIQUEZ SALAS',gestor:'BRYAN ALEXIS ROBLES GARCIA',rec:27036,cuentas:33},
-  {suc:'SORIA',enc:'JORGE EDUARDO MANRIQUEZ SALAS',gestor:'ADRIAN ALEJANDRO ABRAHAM ALONSO',rec:18689,cuentas:31},
-  {suc:'SORIA',enc:'JORGE EDUARDO MANRIQUEZ SALAS',gestor:'TAMARA MOCTEZUMA COVARRUBIAS',rec:18628.85,cuentas:25},
-  {suc:'SORIA',enc:'JORGE EDUARDO MANRIQUEZ SALAS',gestor:'AYLIN YOALI HERNANDEZ DIAZ',rec:15653.80,cuentas:21},
-  {suc:'SORIA',enc:'JORGE EDUARDO MANRIQUEZ SALAS',gestor:'ANTONIA XIOMARA RAMIREZ LOPEZ',rec:13768,cuentas:25},
-  {suc:'SORIA',enc:'JORGE EDUARDO MANRIQUEZ SALAS',gestor:'VANESSA ZEFERINO GALVEZ',rec:13128,cuentas:22},
-  {suc:'SORIA',enc:'JORGE EDUARDO MANRIQUEZ SALAS',gestor:'Carmen Yatziri Ledesma Lopez',rec:12076,cuentas:29},
-  {suc:'SORIA',enc:'JORGE EDUARDO MANRIQUEZ SALAS',gestor:'Omar Mucino Molina',rec:10991,cuentas:14},
-  {suc:'SORIA',enc:'JORGE EDUARDO MANRIQUEZ SALAS',gestor:'TATIANA DEL CARMEN VARGAS BAÑUELOS',rec:4845,cuentas:18},
-  {suc:'SORIA',enc:'JORGE EDUARDO MANRIQUEZ SALAS',gestor:'KAREM AMERICA MARTINEZ DE LA ROSA',rec:2587,cuentas:8},
-  {suc:'SORIA',enc:'JORGE EDUARDO MANRIQUEZ SALAS',gestor:'YAEL ALEJANDRO TEPOS GONZALEZ',rec:1100,cuentas:1},
-  {suc:'SORIA',enc:'JORGE EDUARDO MANRIQUEZ SALAS',gestor:'IGNACIO FONSECA LOPEZ',rec:809,cuentas:9},
-  {suc:'SORIA',enc:'JORGE EDUARDO MANRIQUEZ SALAS',gestor:'Jessica Itzel Gallardo Flores',rec:221.59,cuentas:6},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'NAYELI MATA HURTADO',rec:59853.31,cuentas:87},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'JAZMIN LUCERO RODRIGUEZ ROSALES',rec:39875.79,cuentas:19},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'KARLA PAOLA MORALES SANCHEZ',rec:35315,cuentas:43},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'GUADALUPE ABIGAIL NAJERA VAZQUEZ',rec:35098.98,cuentas:34},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'CESAR LAURO MATUS ROJAS',rec:33200,cuentas:47},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'CESAR EMILIO MEJIA JAVIER',rec:30452,cuentas:47},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'VALERIA LOPEZ MEDINA',rec:30335,cuentas:67},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'DIANA CAMPOS GONZALEZ',rec:27474,cuentas:42},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'DULCE JOVANA LAGUNES MELENDEZ',rec:25267,cuentas:46},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'FRIDA TAMARA FALCON MARTINEZ',rec:16012,cuentas:30},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'MAURO URIEL CABRERA TORRES',rec:14709,cuentas:36},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'ROCIO NOGUERON MARTINEZ',rec:14350,cuentas:33},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'Fanny Montes Ibañez',rec:13113,cuentas:19},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'Cesar Isac Becerril Alvarado',rec:12243,cuentas:12},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'JOSE ANTONIO ZEPEDA GALVAN',rec:12153,cuentas:30},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'DIANA KATYA FUENTES GARCIA',rec:10768,cuentas:17},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'EDITH ALEJANDRO BARTOLO',rec:10218,cuentas:21},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'JULIO JOSHUA RODRIGUEZ BLANCO',rec:9286,cuentas:30},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'ANA FERNANDA AMBROSIO POMPA',rec:8079,cuentas:34},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'DANNA PAULINA MEDINA BALLESTEROS',rec:7270,cuentas:15},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'HILARIA CORTES HERNANDEZ',rec:6462,cuentas:22},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'VIRGINIA MANUELA GARCIA GARCIA',rec:5629,cuentas:34},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'DIANA GUADALUPE SALAZAR JULIAN',rec:5500,cuentas:12},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'Ana Elizabeth Rodriguez rodriguez',rec:1501,cuentas:3},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'KARLA DANIELA SANDOVAL ESTRADA',rec:1329,cuentas:16},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'ELIAS ALEJANDRO ABARCA PEREZ',rec:1131,cuentas:5},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'JOSE MANUEL RODRIGUEZ RIOS',rec:600,cuentas:12},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'Azucena Aguilar Neri',rec:0,cuentas:2},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'BRENDA MONSERRAT LOPEZ OLMOS',rec:0,cuentas:2},
-  {suc:'IZTAPALAPA',enc:'ANA CRISTINA MARTINEZ BAUTISTA',gestor:'EVELYN NAOMI PEREZ',rec:0,cuentas:1},
-  {suc:'IZTAPALAPA',enc:'IVAN PRADO TADEO',gestor:'NAHOMI MONTSERRAT LECHUGA AGUILAR',rec:53750,cuentas:55},
-  {suc:'IZTAPALAPA',enc:'IVAN PRADO TADEO',gestor:'PAMELA MICHELL MEDINA BALLESTEROS',rec:30671,cuentas:41},
-  {suc:'IZTAPALAPA',enc:'IVAN PRADO TADEO',gestor:'ULISES HERNANDEZ GARCIA',rec:20571,cuentas:34},
-  {suc:'IZTAPALAPA',enc:'IVAN PRADO TADEO',gestor:'KELLY ITZEL ORTEGA GONZALEZ',rec:14976,cuentas:32},
-  {suc:'IZTAPALAPA',enc:'IVAN PRADO TADEO',gestor:'SONIA REZA CRUZ',rec:14752,cuentas:20},
-  {suc:'IZTAPALAPA',enc:'IVAN PRADO TADEO',gestor:'DANIEL VICTORIA ROMERO',rec:6284,cuentas:16},
-  {suc:'IZTAPALAPA',enc:'IVAN PRADO TADEO',gestor:'MARLEM SANTOS CRUZ',rec:6183,cuentas:26},
-  {suc:'IZTAPALAPA',enc:'IVAN PRADO TADEO',gestor:'MIGUEL ANGEL MUÑOS ARCINIEGA',rec:3621,cuentas:6},
-  {suc:'IZTAPALAPA',enc:'JORGE EDUARDO MANRIQUEZ SALAS',gestor:'HUGO OMAR HERNANDEZ CORONA',rec:23262,cuentas:14},
-  {suc:'IZTAPALAPA',enc:'SIN ASIGNAR',gestor:'AMERICA VANESSA DIONICIO HERNANDEZ',rec:3463,cuentas:6},
-  {suc:'IZTAPALAPA',enc:'DANIELA BERENICE CLEMENTE TADEO',gestor:'JOHANA ARLETHE PEREZ SAAVEDRA',rec:7137,cuentas:6},
-  {suc:'IZTAPALAPA',enc:'DANIELA BERENICE CLEMENTE TADEO',gestor:'JESUS MORALES PONCE DE LEON',rec:0,cuentas:2},
+  {nombre:'JAZMIN LUCERO RODRIGUEZ ROSALES',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2026-04-10',monto:31323.00},
+  {nombre:'NAYELI MATA HURTADO',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2025-04-09',monto:26418.00},
+  {nombre:'GUADALUPE ABIGAIL NAJERA VAZQUEZ',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2026-05-05',monto:24737.00},
+  {nombre:'NAHOMI MONTSERRAT LECHUGA AGUILAR',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2025-06-21',monto:21587.00},
+  {nombre:'DIANA CAMPOS GONZALEZ',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2026-04-08',monto:19444.00},
+  {nombre:'VALERIA LOPEZ MEDINA',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2025-03-31',monto:14805.00},
+  {nombre:'DULCE JOVANA LAGUNES MELENDEZ',turno:'VESPERTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2025-04-09',monto:10663.38},
+  {nombre:'VIRGINIA MANUELA GARCIA GARCIA',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2025-03-26',monto:7330.00},
+  {nombre:'FRIDA TAMARA FALCON MARTINEZ',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2025-12-10',monto:7233.00},
+  {nombre:'ANA FERNANDA AMBROSIO POMPA',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2026-04-20',monto:7102.00},
+  {nombre:'FANNY MONTES IBAÑEZ',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2026-05-30',monto:6387.00},
+  {nombre:'DIANA KATYA FUENTES GARCIA',turno:'VESPERTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2025-12-05',monto:5603.00},
+  {nombre:'KARLA PAOLA MORALES SANCHEZ',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2026-01-23',monto:5014.00},
+  {nombre:'JULIO JOSHUA RODRIGUEZ BLANCO',turno:'VESPERTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2026-05-08',monto:4850.00},
+  {nombre:'CESAR LAURO MATUS ROJAS',turno:'VESPERTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2026-01-28',monto:4595.00},
+  {nombre:'HUGO OMAR HERNANDEZ CORONA',turno:'MATUTINO',puesto:'MATUTINO',segmento:'5',ingreso:'2026-06-06',monto:2902.00},
+  {nombre:'MAURO URIEL CABRERA TORRES',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2025-08-07',monto:2849.00},
+  {nombre:'DIANA GUADALUPE SALAZAR JULIAN',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2026-06-02',monto:2451.00},
+  {nombre:'HILARIA CORTES HERNANDEZ',turno:'VESPERTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2026-12-18',monto:2163.00},
+  {nombre:'JOSE ANTONIO ZEPEDA GALVAN',turno:'VESPERTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2025-10-07',monto:1748.00},
+  {nombre:'ROCIO NOGUERON MARTINEZ',turno:'VESPERTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2025-10-08',monto:1279.00},
+  {nombre:'KARLA DANIELA SANDOVAL ESTRADA',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2026-05-07',monto:967.00},
+  {nombre:'CESAR EMILIO MEJIA JAVIER',turno:'VESPERTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2025-06-12',monto:1458.00},
+  {nombre:'CESAR ISAC BECERRIL ALVARADO',turno:'VESPERTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2026-05-25',monto:0.00},
+  {nombre:'DANNA PAULINA MEDINA BALLESTEROS',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2026-05-04',monto:0.00},
+  {nombre:'ANA ELIZABETH RODRIGUEZ RODRIGUEZ',turno:'MATUTINO',puesto:'MATUTINO',segmento:'5',ingreso:'2026-06-06',monto:0.00},
+  {nombre:'JESUS MORALES PONCE DE LEON',turno:'MATUTINO',puesto:'MATUTINO',segmento:'5',ingreso:'2026-06-01',monto:0.00},
+  {nombre:'PAMELA MICHELL MEDINA BALLESTEROS',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'6',ingreso:'2025-05-14',monto:16625.00},
+  {nombre:'KELLY ITZEL ORTEGA GONZALEZ',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'6',ingreso:'2025-11-07',monto:12491.00},
+  {nombre:'ULISES HERNANDEZ GARCIA',turno:'VESPERTINO',puesto:'TELEFONICO',segmento:'6',ingreso:'2026-03-18',monto:2879.00},
+  {nombre:'JOHANA ARLETHE PEREZ SAAVEDRA',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'6',ingreso:'2026-06-01',monto:2500.00},
+  {nombre:'SONIA REZA CRUZ',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'6',ingreso:'2025-08-07',monto:1974.00},
+  {nombre:'MARLEM SANTOS CRUZ',turno:'VESPERTINO',puesto:'TELEFONICO',segmento:'6',ingreso:'2026-03-11',monto:1072.00},
+  {nombre:'DANIEL VICTORIA ROMERO',turno:'VESPERTINO',puesto:'TELEFONICO',segmento:'6',ingreso:'2025-12-22',monto:570.00},
+  {nombre:'MIGUEL ANGEL MUÑOS ARCINIEGA',turno:'VESPERTINO',puesto:'TELEFONICO',segmento:'6',ingreso:'2026-05-16',monto:444.00},
 ];
 
-const encClass = {
-  'JONATHAN RIVERA CUADRA':'enc-jona',
-  'JORGE EDUARDO MANRIQUEZ SALAS':'enc-jorge',
-  'ANA CRISTINA MARTINEZ BAUTISTA':'enc-ana',
-  'IVAN PRADO TADEO':'enc-ivan',
-  'DANIELA BERENICE CLEMENTE TADEO':'enc-ivan',
-  'SIN ASIGNAR':'enc-default'
-};
+let activeSeg = 'todos', activeTurno = 'todos', search = '';
 
-let activeSuc = 'todas', activeSort = 'rec', search = '';
-
-function setSuc(s, btn) {
-  activeSuc = s;
-  document.querySelectorAll('#suc-btns button').forEach(b => b.classList.remove('active'));
+function setSeg(s, btn) {
+  activeSeg = s;
+  document.querySelectorAll('#seg-btns button').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   render();
 }
-function setSort(s, btn) {
-  activeSort = s;
-  document.querySelectorAll('#sort-btns button').forEach(b => b.classList.remove('active'));
+function setTurno(t, btn) {
+  activeTurno = t;
+  document.querySelectorAll('#turno-btns button').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   render();
 }
 function setSearch(v) { search = v.toLowerCase(); render(); }
 
 function fmt(n) { return '$' + Math.round(n).toLocaleString('es-MX'); }
+function fmtFecha(f) {
+  const [y,m,d] = f.split('-');
+  return `${d}/${m}/${y}`;
+}
 
 function render() {
-  let data = raw.filter(r => activeSuc === 'todas' || r.suc === activeSuc);
-  if (search) data = data.filter(r => r.gestor.toLowerCase().includes(search) || r.enc.toLowerCase().includes(search));
+  let data = raw.filter(r => activeSeg === 'todos' || r.segmento === activeSeg);
+  data = data.filter(r => activeTurno === 'todos' || r.turno === activeTurno);
+  if (search) data = data.filter(r => r.nombre.toLowerCase().includes(search));
 
-  const totalRec    = data.reduce((s,r) => s+r.rec, 0);
-  const totalGest   = new Set(data.map(r=>r.gestor)).size;
-  const totalCuent  = data.reduce((s,r) => s+r.cuentas, 0);
-  const sinRec      = data.filter(r=>r.rec===0).length;
+  const totalMonto = data.reduce((s,r) => s+r.monto, 0);
+  const totalGest  = data.length;
+  const sinRec     = data.filter(r=>r.monto===0).length;
+  const promedio   = totalGest ? totalMonto/totalGest : 0;
 
   document.getElementById('metrics').innerHTML = `
-    <div class="metric"><div class="metric-label">Recuperación total</div><div class="metric-val">${fmt(totalRec)}</div></div>
-    <div class="metric"><div class="metric-label">Gestores activos</div><div class="metric-val">${totalGest}</div></div>
-    <div class="metric"><div class="metric-label">Total cuentas</div><div class="metric-val">${totalCuent.toLocaleString('es-MX')}</div></div>
+    <div class="metric"><div class="metric-label">Recuperación total</div><div class="metric-val">${fmt(totalMonto)}</div></div>
+    <div class="metric"><div class="metric-label">Gestores</div><div class="metric-val">${totalGest}</div></div>
+    <div class="metric"><div class="metric-label">Promedio por gestor</div><div class="metric-val">${fmt(promedio)}</div></div>
     <div class="metric"><div class="metric-label">Sin recuperación</div><div class="metric-val red">${sinRec}</div></div>
   `;
 
   const map = {};
   data.forEach(r => {
-    const k = r.suc+'||'+r.enc;
-    if (!map[k]) map[k] = {suc:r.suc, enc:r.enc, list:[], totalRec:0, totalC:0};
-    map[k].list.push(r); map[k].totalRec += r.rec; map[k].totalC += r.cuentas;
+    const k = r.segmento;
+    if (!map[k]) map[k] = {segmento:k, list:[], totalMonto:0};
+    map[k].list.push(r); map[k].totalMonto += r.monto;
   });
 
-  const groups = Object.values(map).sort((a,b) => b.totalRec - a.totalRec);
-  groups.forEach(g => g.list.sort((a,b) => activeSort==='rec' ? b.rec-a.rec : b.cuentas-a.cuentas));
+  const groups = Object.values(map).sort((a,b) => b.totalMonto - a.totalMonto);
+  groups.forEach(g => g.list.sort((a,b) => b.monto - a.monto));
 
   if (!groups.length) {
     document.getElementById('ranking-root').innerHTML = '<div class="no-results">No se encontraron resultados para tu búsqueda.</div>';
@@ -417,32 +363,31 @@ function render() {
 
   let html = '';
   groups.forEach(g => {
-    const cls = encClass[g.enc] || 'enc-default';
     html += `<div class="section">
-      <div class="section-header ${cls}">
-        <span class="sh-icon">👥</span>
+      <div class="section-header">
+        <span class="sh-icon">📊</span>
         <div class="sh-info">
-          <div class="sh-name">${g.enc}</div>
-          <div class="sh-stats">${fmt(g.totalRec)} · ${g.totalC.toLocaleString('es-MX')} cuentas</div>
+          <div class="sh-name">Segmento ${g.segmento}</div>
+          <div class="sh-stats">${fmt(g.totalMonto)} · ${g.list.length} gestores</div>
         </div>
-        <span class="sh-badge">${g.suc}</span>
+        <span class="sh-badge">SEG ${g.segmento}</span>
       </div>
       <table>
-        <thead><tr><th>#</th><th>Gestor</th><th>Recuperación</th><th>Cuentas</th></tr></thead>
+        <thead><tr><th>#</th><th>Gestor</th><th>Recuperación</th><th>Ingreso</th><th>Turno</th></tr></thead>
         <tbody>`;
     g.list.forEach((r, i) => {
       const rank = i+1;
-      const rowCls = rank===1?'top1':rank===2?'top2':rank===3?'top3':r.rec===0?'zero':'';
-      const bCls   = rank===1?'r1':rank===2?'r2':rank===3?'r3':r.rec===0?'rz':'rn';
-      
-      // Ajuste visual: si se ordena por cuentas, el resaltado de monto alto pasa a normal, a menos que siga siendo top
-      const aCls   = (activeSort === 'rec' && rank <= 3) ? 'amt-top' : (r.rec === 0 ? 'amt-zero' : 'amt-mid');
-      
+      const rowCls = rank===1?'top1':rank===2?'top2':rank===3?'top3':r.monto===0?'zero':'';
+      const bCls   = rank===1?'r1':rank===2?'r2':rank===3?'r3':r.monto===0?'rz':'rn';
+      const aCls   = rank<=3?'amt-top':r.monto===0?'amt-zero':'amt-mid';
+      const tCls   = r.turno==='MATUTINO' ? 'turno-mat' : 'turno-ves';
+      const tLabel = r.turno==='MATUTINO' ? 'Matutino' : 'Vespertino';
       html += `<tr class="${rowCls}">
         <td><span class="rank-badge ${bCls}">${rank}</span></td>
-        <td>${r.gestor}</td>
-        <td><span class="amt ${aCls}">${fmt(r.rec)}</span></td>
-        <td class="cnt">${r.cuentas}</td>
+        <td>${r.nombre}</td>
+        <td><span class="amt ${aCls}">${fmt(r.monto)}</span></td>
+        <td class="cnt">${fmtFecha(r.ingreso)}</td>
+        <td><span class="turno-pill ${tCls}">${tLabel}</span></td>
       </tr>`;
     });
     html += `</tbody></table></div>`;
