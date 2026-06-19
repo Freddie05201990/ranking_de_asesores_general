@@ -7,250 +7,266 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --green-dark:   #1b5e20;
-    --green-mid:    #2e7d32;
-    --green-light:  #388e3c;
-    --green-bg1:    #e8f5e9;
-    --green-bg2:    #f1f8e9;
-    --green-border: #a5d6a7;
-    --red-bg:       #fff5f5;
-    --red-text:     #c62828;
-    --red-border:   #ef9a9a;
-    --gray-bg:      #f8fafc;
-    --gray-border:  #e2e8f0;
-    --text-main:    #1a1a1a;
-    --text-muted:   #64748b;
-    --white:        #ffffff;
-    --radius-sm:    6px;
-    --radius-md:    10px;
-    --radius-lg:    14px;
-    --shadow-sm:    0 1px 3px rgba(0,0,0,.07), 0 1px 2px rgba(0,0,0,.05);
+    --g-dark:   #1b5e20;
+    --g-mid:    #2e7d32;
+    --g-light:  #388e3c;
+    --g-bg1:    #e8f5e9;
+    --g-bg2:    #f1f8e9;
+    --g-bg3:    #f9fbe9;
+    --g-border: #a5d6a7;
+    --r-bg:     #fff5f5;
+    --r-text:   #c62828;
+    --gray-bg:  #f8fafc;
+    --gray-b:   #e2e8f0;
+    --t-main:   #1a1a1a;
+    --t-muted:  #64748b;
+    --white:    #ffffff;
+    --rad-lg:   14px;
+    --rad-sm:   6px;
+    --shadow:   0 1px 4px rgba(0,0,0,.08);
   }
+
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: #f0f4f0;
-    color: var(--text-main);
+    background: #eef3ee;
+    color: var(--t-main);
     min-height: 100vh;
-    padding: 0 0 3rem;
+    padding-bottom: 3rem;
   }
 
-  /* ── Header ── */
+  /* ── HEADER ── */
   header {
-    background: var(--green-dark);
+    background: var(--g-dark);
     color: #fff;
-    padding: 2rem 1.5rem 1.75rem;
     text-align: center;
+    padding: 2rem 1.5rem 1.5rem;
   }
-  header .label {
+  .header-eyebrow {
     font-size: 11px;
-    letter-spacing: .12em;
+    letter-spacing: .13em;
     text-transform: uppercase;
     color: #a5d6a7;
-    margin-bottom: .5rem;
+    margin-bottom: .45rem;
   }
-  header h1 {
-    font-size: clamp(1.4rem, 4vw, 2rem);
-    font-weight: 600;
-    margin-bottom: .35rem;
-  }
-  header p { font-size: 14px; color: #c8e6c9; }
+  header h1 { font-size: clamp(1.45rem, 4vw, 2.1rem); font-weight: 700; margin-bottom: .3rem; }
+  header p  { font-size: 13.5px; color: #c8e6c9; }
 
-  /* ── Metrics ── */
-  .metrics-band {
+  /* ── METRICS BAR ── */
+  .metrics-bar {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
-    background: var(--green-mid);
-    padding: 1rem 1.5rem;
+    justify-content: center;
+    gap: 8px;
+    background: var(--g-mid);
+    padding: 1rem 1.25rem;
   }
   .metric {
-    background: rgba(255,255,255,.12);
-    border-radius: var(--radius-sm);
-    padding: 10px 20px;
+    background: rgba(255,255,255,.13);
+    border-radius: var(--rad-sm);
+    padding: 9px 18px;
     text-align: center;
-    min-width: 130px;
+    min-width: 120px;
   }
-  .metric-label { font-size: 11px; color: #c8e6c9; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 3px; }
-  .metric-val   { font-size: 20px; font-weight: 600; color: #fff; }
+  .metric-lbl { font-size: 10.5px; color: #c8e6c9; text-transform: uppercase; letter-spacing: .09em; margin-bottom: 3px; }
+  .metric-val { font-size: 19px; font-weight: 700; color: #fff; }
   .metric-val.red { color: #ffcdd2; }
 
-  /* ── Controls ── */
+  /* ── CONTROLS ── */
   .controls {
-    max-width: 900px;
-    margin: 1.5rem auto 0;
+    max-width: 920px;
+    margin: 1.4rem auto 0;
     padding: 0 1rem;
     display: flex;
-    gap: 10px;
+    gap: 8px;
     flex-wrap: wrap;
     align-items: center;
   }
-  .btn-group { display: flex; gap: 6px; flex-wrap: wrap; }
+  .btn-row { display: flex; gap: 6px; flex-wrap: wrap; }
   button {
     padding: 7px 16px;
     font-size: 13px;
     border-radius: 20px;
-    border: 1.5px solid var(--green-border);
+    border: 1.5px solid var(--g-border);
     background: var(--white);
-    color: var(--green-mid);
+    color: var(--g-mid);
     cursor: pointer;
     font-family: inherit;
     font-weight: 500;
-    transition: all .15s;
+    transition: all .14s;
   }
-  button:hover  { background: var(--green-bg1); }
-  button.active { background: var(--green-mid); color: #fff; border-color: var(--green-mid); }
+  button:hover  { background: var(--g-bg1); }
+  button.active { background: var(--g-mid); color: #fff; border-color: var(--g-mid); }
+
   .search-wrap { flex: 1; min-width: 180px; }
   input[type=text] {
     width: 100%;
     padding: 8px 14px;
     font-size: 13px;
-    border: 1.5px solid var(--gray-border);
+    border: 1.5px solid var(--gray-b);
     border-radius: 20px;
     background: var(--white);
-    color: var(--text-main);
+    color: var(--t-main);
     font-family: inherit;
     outline: none;
-    transition: border-color .15s;
+    transition: border-color .14s;
   }
-  input[type=text]:focus { border-color: var(--green-mid); box-shadow: 0 0 0 3px rgba(46,125,50,.12); }
+  input[type=text]:focus { border-color: var(--g-mid); box-shadow: 0 0 0 3px rgba(46,125,50,.13); }
 
-  /* ── Legend ── */
+  /* ── LEGEND ── */
   .legend {
-    max-width: 900px;
-    margin: .85rem auto 0;
+    max-width: 920px;
+    margin: .7rem auto 0;
     padding: 0 1rem;
     display: flex;
-    gap: 16px;
+    gap: 14px;
     flex-wrap: wrap;
     font-size: 12px;
-    color: var(--text-muted);
+    color: var(--t-muted);
   }
-  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .li { display: flex; align-items: center; gap: 6px; }
   .dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
 
-  /* ── Content ── */
-  .content { max-width: 900px; margin: 1.25rem auto 0; padding: 0 1rem; }
+  /* ── CONTENT ── */
+  .content { max-width: 920px; margin: 1.1rem auto 0; padding: 0 1rem; }
 
-  /* ── Section / segment card ── */
-  .section { margin-bottom: 1.25rem; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); }
-  .section-header {
+  /* ── SEGMENT CARD ── */
+  .seg-card {
+    margin-bottom: 1.2rem;
+    border-radius: var(--rad-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .seg-header {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 12px 16px;
+    padding: 13px 16px;
+    background: var(--g-bg1);
     border-bottom: 1px solid rgba(0,0,0,.06);
-    background: var(--green-bg1);
   }
-  .sh-icon { font-size: 20px; }
-  .sh-info { flex: 1; }
-  .sh-name { font-size: 14px; font-weight: 600; color: var(--green-dark); }
-  .sh-stats { font-size: 12px; color: var(--green-light); margin-top: 1px; }
-  .sh-badge {
-    font-size: 11px;
+  .seg-icon { font-size: 22px; }
+  .seg-info { flex: 1; }
+  .seg-title  { font-size: 15px; font-weight: 700; color: var(--g-dark); }
+  .seg-sub    { font-size: 12px; color: var(--g-light); margin-top: 2px; }
+  .seg-badge  {
+    font-size: 11px; font-weight: 600;
     background: var(--white);
-    border: 1px solid var(--green-border);
-    color: var(--green-mid);
-    padding: 3px 10px;
+    border: 1px solid var(--g-border);
+    color: var(--g-mid);
+    padding: 3px 11px;
     border-radius: 20px;
-    font-weight: 500;
     white-space: nowrap;
   }
 
-  /* ── Table ── */
+  /* ── TABLE ── */
   table { width: 100%; border-collapse: collapse; background: var(--white); }
   thead th {
     background: var(--gray-bg);
-    color: var(--text-muted);
-    font-weight: 500;
-    font-size: 11px;
+    color: var(--t-muted);
+    font-weight: 600;
+    font-size: 10.5px;
     text-transform: uppercase;
     letter-spacing: .07em;
     padding: 9px 14px;
     text-align: left;
-    border-bottom: 1px solid var(--gray-border);
+    border-bottom: 1px solid var(--gray-b);
   }
-  thead th:nth-child(3),
-  thead th:nth-child(4) { text-align: right; }
-  thead th:nth-child(5) { text-align: center; }
-  tbody tr { border-bottom: .5px solid var(--gray-border); transition: background .1s; }
+  thead th.r { text-align: right; }
+  thead th.c { text-align: center; }
+
+  tbody tr { border-bottom: .5px solid var(--gray-b); transition: background .1s; }
   tbody tr:last-child { border-bottom: none; }
-  tbody tr:hover { background: #f7fdf7; }
-  tbody tr.top1 { background: #e8f5e9; }
-  tbody tr.top2 { background: #f1f8e9; }
-  tbody tr.top3 { background: #f9fbe9; }
-  tbody tr.zero { background: var(--red-bg); }
-  td { padding: 9px 14px; font-size: 13px; color: var(--text-main); vertical-align: middle; }
-  td:nth-child(3),
-  td:nth-child(4) { text-align: right; }
-  td:nth-child(5) { text-align: center; }
+  tbody tr:hover { background: #f6fcf6; }
 
-  .rank-badge {
+  /* Row highlights */
+  tbody tr.top1 { background: #dcedc8; }
+  tbody tr.top2 { background: #e8f5e9; }
+  tbody tr.top3 { background: #f1f8e9; }
+  tbody tr.zero { background: var(--r-bg); }
+
+  td { padding: 9px 14px; font-size: 13px; vertical-align: middle; }
+  td.r { text-align: right; }
+  td.c { text-align: center; }
+
+  /* Rank badges */
+  .rb {
     display: inline-flex; align-items: center; justify-content: center;
-    width: 24px; height: 24px; border-radius: 50%;
-    font-size: 11px; font-weight: 600;
+    width: 25px; height: 25px; border-radius: 50%;
+    font-size: 11px; font-weight: 700;
   }
-  .r1 { background: var(--green-dark); color: #fff; }
-  .r2 { background: #558b2f; color: #fff; }
-  .r3 { background: #827717; color: #fff; }
-  .rn { background: #f1f5f9; color: var(--text-muted); }
-  .rz { background: #ffebee; color: var(--red-text); }
+  .rb1 { background: var(--g-dark); color: #fff; }
+  .rb2 { background: #558b2f; color: #fff; }
+  .rb3 { background: #827717; color: #fff; }
+  .rbn { background: #f1f5f9; color: var(--t-muted); }
+  .rbz { background: #ffebee; color: var(--r-text); }
 
-  .amt { font-weight: 600; }
-  .amt-top  { color: var(--green-dark); }
-  .amt-mid  { color: var(--text-main); }
-  .amt-zero { color: var(--red-text); }
-  .cnt      { color: var(--text-muted); font-size: 13px; }
+  /* Amount styling */
+  .amt { font-weight: 700; }
+  .amt-top  { color: var(--g-dark); font-size: 13.5px; }
+  .amt-mid  { color: var(--t-main); }
+  .amt-zero { color: var(--r-text); }
 
-  .turno-pill {
+  /* Turno pill */
+  .pill {
     display: inline-block;
-    font-size: 11px;
-    padding: 2px 9px;
-    border-radius: 20px;
-    font-weight: 500;
+    font-size: 11px; font-weight: 500;
+    padding: 2px 9px; border-radius: 20px;
   }
-  .turno-mat { background: #fff8e1; color: #f57f17; }
-  .turno-ves { background: #ede7f6; color: #5e35b1; }
+  .pill-mat { background: #fff8e1; color: #e65100; }
+  .pill-ves { background: #ede7f6; color: #5e35b1; }
 
-  .no-results { padding: 2.5rem; text-align: center; color: var(--text-muted); font-size: 14px; background: var(--white); border-radius: var(--radius-lg); }
+  /* Bar chart per row */
+  .bar-wrap { width: 90px; }
+  .bar-bg   { background: #e8f5e9; border-radius: 4px; height: 6px; overflow: hidden; }
+  .bar-fill { background: var(--g-mid); height: 6px; border-radius: 4px; transition: width .3s; }
+  .bar-fill.zero { background: #ef9a9a; }
 
-  /* ── Footer ── */
+  .no-results {
+    padding: 2.5rem;
+    text-align: center;
+    color: var(--t-muted);
+    font-size: 14px;
+    background: var(--white);
+    border-radius: var(--rad-lg);
+  }
+
   footer {
-    max-width: 900px;
+    max-width: 920px;
     margin: 2rem auto 0;
     padding: 0 1rem;
     font-size: 12px;
-    color: var(--text-muted);
+    color: var(--t-muted);
     text-align: center;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 620px) {
     .controls { flex-direction: column; }
     .search-wrap { width: 100%; }
-    thead th:nth-child(5), td:nth-child(5) { display: none; }
+    .bar-wrap, thead th.bar, td.bar { display: none; }
+    thead th.ing, td.ing { display: none; }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="label">BAZ Forcados — Cobranza</div>
+  <div class="header-eyebrow">BAZ Forcados — Cobranza</div>
   <h1>Ranking de Recuperación</h1>
   <p>Semana 25 · Por gestor y segmento</p>
 </header>
 
-<div class="metrics-band" id="metrics"></div>
+<div class="metrics-bar" id="metrics"></div>
 
 <div class="controls">
-  <div class="btn-group" id="seg-btns">
+  <div class="btn-row" id="seg-btns">
     <button class="active" onclick="setSeg('todos',this)">Todos</button>
     <button onclick="setSeg('5',this)">Segmento 5</button>
     <button onclick="setSeg('6',this)">Segmento 6</button>
   </div>
-  <div class="btn-group" id="turno-btns">
+  <div class="btn-row" id="turno-btns">
     <button class="active" onclick="setTurno('todos',this)">Todos los turnos</button>
-    <button onclick="setTurno('MATUTINO',this)">Matutino</button>
-    <button onclick="setTurno('VESPERTINO',this)">Vespertino</button>
+    <button onclick="setTurno('MATUTINO',this)">☀️ Matutino</button>
+    <button onclick="setTurno('VESPERTINO',this)">🌙 Vespertino</button>
   </div>
   <div class="search-wrap">
     <input type="text" placeholder="🔍 Buscar gestor..." oninput="setSearch(this.value)" />
@@ -258,142 +274,170 @@
 </div>
 
 <div class="legend">
-  <span class="legend-item"><span class="dot" style="background:#1b5e20"></span>Top 1</span>
-  <span class="legend-item"><span class="dot" style="background:#558b2f"></span>Top 2</span>
-  <span class="legend-item"><span class="dot" style="background:#827717"></span>Top 3</span>
-  <span class="legend-item"><span class="dot" style="background:#ffebee;border:1px solid #ef9a9a"></span>Sin recuperación</span>
+  <span class="li"><span class="dot" style="background:#1b5e20"></span>Top 1</span>
+  <span class="li"><span class="dot" style="background:#558b2f"></span>Top 2</span>
+  <span class="li"><span class="dot" style="background:#827717"></span>Top 3</span>
+  <span class="li"><span class="dot" style="background:#dcedc8;border:1px solid #a5d6a7"></span>Posición 1 (fila)</span>
+  <span class="li"><span class="dot" style="background:#ffebee;border:1px solid #ef9a9a"></span>Sin recuperación</span>
 </div>
 
-<div class="content" id="ranking-root"></div>
+<div class="content" id="root"></div>
 
 <footer>Generado automáticamente · Semana 25 · Proyecto BAZ Forcados</footer>
 
 <script>
 const raw = [
-  {nombre:'JAZMIN LUCERO RODRIGUEZ ROSALES',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2026-04-10',monto:31323.00},
-  {nombre:'DIANA CAMPOS GONZALEZ',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2026-04-08',monto:26631.00},
-  {nombre:'NAYELI MATA HURTADO',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2025-04-09',monto:26418.00},
-  {nombre:'GUADALUPE ABIGAIL NAJERA VAZQUEZ',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2026-05-05',monto:25731.00},
-  {nombre:'NAHOMI MONTSERRAT LECHUGA AGUILAR',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2025-06-21',monto:23753.00},
-  {nombre:'VIRGINIA MANUELA GARCIA GARCIA',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2025-03-26',monto:15182.00},
-  {nombre:'FRIDA TAMARA FALCON MARTINEZ',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2025-12-10',monto:13100.00},
-  {nombre:'VALERIA LOPEZ MEDINA',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2025-03-31',monto:11217.00},
-  {nombre:'FANNY MONTES IBAÑEZ',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2026-05-30',monto:10398.00},
-  {nombre:'DULCE JOVANA LAGUNES MELENDEZ',turno:'VESPERTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2025-04-09',monto:9740.38},
-  {nombre:'DIANA KATYA FUENTES GARCIA',turno:'VESPERTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2025-12-05',monto:7534.00},
-  {nombre:'DIANA GUADALUPE SALAZAR JULIAN',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2026-06-02',monto:7390.00},
-  {nombre:'ANA FERNANDA AMBROSIO POMPA',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2026-04-20',monto:7102.00},
-  {nombre:'CESAR LAURO MATUS ROJAS',turno:'VESPERTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2026-01-28',monto:5095.00},
-  {nombre:'KARLA PAOLA MORALES SANCHEZ',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2026-01-23',monto:4970.00},
-  {nombre:'JULIO JOSHUA RODRIGUEZ BLANCO',turno:'VESPERTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2026-05-08',monto:4850.00},
-  {nombre:'JOSE ANTONIO ZEPEDA GALVAN',turno:'VESPERTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2025-10-07',monto:3983.00},
-  {nombre:'MAURO URIEL CABRERA TORRES',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2025-08-07',monto:3688.00},
-  {nombre:'CESAR EMILIO MEJIA JAVIER',turno:'VESPERTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2025-06-12',monto:3072.00},
-  {nombre:'HUGO OMAR HERNANDEZ CORONA',turno:'MATUTINO',puesto:'MATUTINO',segmento:'5',ingreso:'2026-06-06',monto:2902.00},
-  {nombre:'KARLA DANIELA SANDOVAL ESTRADA',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2026-05-07',monto:2167.00},
-  {nombre:'HILARIA CORTES HERNANDEZ',turno:'VESPERTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2026-12-18',monto:2163.00},
-  {nombre:'ROCIO NOGUERON MARTINEZ',turno:'VESPERTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2025-10-08',monto:2000.00},
-  {nombre:'DANNA PAULINA MEDINA BALLESTEROS',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2026-05-04',monto:608.00},
-  {nombre:'CESAR ISAC BECERRIL ALVARADO',turno:'VESPERTINO',puesto:'TELEFONICO',segmento:'5',ingreso:'2026-05-25',monto:0.00},
-  {nombre:'ANA ELIZABETH RODRIGUEZ RODRIGUEZ',turno:'MATUTINO',puesto:'MATUTINO',segmento:'5',ingreso:'2026-06-06',monto:0.00},
-  {nombre:'JESUS MORALES PONCE DE LEON',turno:'MATUTINO',puesto:'MATUTINO',segmento:'5',ingreso:'2026-06-01',monto:0.00},
-  {nombre:'JOHANA ARLETHE PEREZ SAAVEDRA',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'6',ingreso:'2026-06-01',monto:16681.00},
-  {nombre:'PAMELA MICHELL MEDINA BALLESTEROS',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'6',ingreso:'2025-05-14',monto:16625.00},
-  {nombre:'KELLY ITZEL ORTEGA GONZALEZ',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'6',ingreso:'2025-11-07',monto:14754.00},
-  {nombre:'MARLEM SANTOS CRUZ',turno:'VESPERTINO',puesto:'TELEFONICO',segmento:'6',ingreso:'2026-03-11',monto:4072.00},
-  {nombre:'SONIA REZA CRUZ',turno:'MATUTINO',puesto:'TELEFONICO',segmento:'6',ingreso:'2025-08-07',monto:4044.00},
-  {nombre:'ULISES HERNANDEZ GARCIA',turno:'VESPERTINO',puesto:'TELEFONICO',segmento:'6',ingreso:'2026-03-18',monto:3979.00},
-  {nombre:'DANIEL VICTORIA ROMERO',turno:'VESPERTINO',puesto:'TELEFONICO',segmento:'6',ingreso:'2025-12-22',monto:570.00},
-  {nombre:'MIGUEL ANGEL MUÑOS ARCINIEGA',turno:'VESPERTINO',puesto:'TELEFONICO',segmento:'6',ingreso:'2026-05-16',monto:444.00},
+  {n:'JAZMIN LUCERO RODRIGUEZ ROSALES',    t:'MATUTINO',   seg:'5', ing:'2026-04-10', m:31323.00},
+  {n:'NAYELI MATA HURTADO',                t:'MATUTINO',   seg:'5', ing:'2025-04-09', m:30033.00},
+  {n:'DIANA CAMPOS GONZALEZ',              t:'MATUTINO',   seg:'5', ing:'2026-04-08', m:28467.00},
+  {n:'GUADALUPE ABIGAIL NAJERA VAZQUEZ',   t:'MATUTINO',   seg:'5', ing:'2026-05-05', m:25731.00},
+  {n:'NAHOMI MONTSERRAT LECHUGA AGUILAR',  t:'MATUTINO',   seg:'5', ing:'2025-06-21', m:23753.00},
+  {n:'VIRGINIA MANUELA GARCIA GARCIA',     t:'MATUTINO',   seg:'5', ing:'2025-03-26', m:16162.00},
+  {n:'VALERIA LOPEZ MEDINA',               t:'MATUTINO',   seg:'5', ing:'2025-03-31', m:14217.00},
+  {n:'DULCE JOVANA LAGUNES MELENDEZ',      t:'VESPERTINO', seg:'5', ing:'2025-04-09', m:13501.38},
+  {n:'FRIDA TAMARA FALCON MARTINEZ',       t:'MATUTINO',   seg:'5', ing:'2025-12-10', m:13100.00},
+  {n:'FANNY MONTES IBAÑEZ',                t:'MATUTINO',   seg:'5', ing:'2026-05-30', m:12079.00},
+  {n:'JULIO JOSHUA RODRIGUEZ BLANCO',      t:'VESPERTINO', seg:'5', ing:'2026-05-08', m:11878.00},
+  {n:'DIANA GUADALUPE SALAZAR JULIAN',     t:'MATUTINO',   seg:'5', ing:'2026-06-02', m:8490.00},
+  {n:'ANA FERNANDA AMBROSIO POMPA',        t:'MATUTINO',   seg:'5', ing:'2026-04-20', m:8102.00},
+  {n:'CESAR LAURO MATUS ROJAS',            t:'VESPERTINO', seg:'5', ing:'2026-01-28', m:8100.00},
+  {n:'MAURO URIEL CABRERA TORRES',         t:'MATUTINO',   seg:'5', ing:'2025-08-07', m:8005.00},
+  {n:'DIANA KATYA FUENTES GARCIA',         t:'VESPERTINO', seg:'5', ing:'2025-12-05', m:7534.00},
+  {n:'KARLA PAOLA MORALES SANCHEZ',        t:'MATUTINO',   seg:'5', ing:'2026-01-23', m:6752.00},
+  {n:'CESAR ISAC BECERRIL ALVARADO',       t:'VESPERTINO', seg:'5', ing:'2026-05-25', m:6001.00},
+  {n:'JOSE ANTONIO ZEPEDA GALVAN',         t:'VESPERTINO', seg:'5', ing:'2025-10-07', m:3983.00},
+  {n:'HILARIA CORTES HERNANDEZ',           t:'VESPERTINO', seg:'5', ing:'2026-12-18', m:3268.00},
+  {n:'CESAR EMILIO MEJIA JAVIER',          t:'VESPERTINO', seg:'5', ing:'2025-06-12', m:3072.00},
+  {n:'HUGO OMAR HERNANDEZ CORONA',         t:'MATUTINO',   seg:'5', ing:'2026-06-06', m:2902.00},
+  {n:'KARLA DANIELA SANDOVAL ESTRADA',     t:'MATUTINO',   seg:'5', ing:'2026-05-07', m:2167.00},
+  {n:'ROCIO NOGUERON MARTINEZ',            t:'VESPERTINO', seg:'5', ing:'2025-10-08', m:2000.00},
+  {n:'JESUS MORALES PONCE DE LEON',        t:'MATUTINO',   seg:'5', ing:'2026-06-01', m:1203.00},
+  {n:'DANNA PAULINA MEDINA BALLESTEROS',   t:'MATUTINO',   seg:'5', ing:'2026-05-04', m:608.00},
+  {n:'ANA ELIZABETH RODRIGUEZ RODRIGUEZ',  t:'MATUTINO',   seg:'5', ing:'2026-06-06', m:0.00},
+  {n:'PAMELA MICHELL MEDINA BALLESTEROS',  t:'MATUTINO',   seg:'6', ing:'2025-05-14', m:53987.00},
+  {n:'JOHANA ARLETHE PEREZ SAAVEDRA',      t:'MATUTINO',   seg:'6', ing:'2026-06-01', m:17690.00},
+  {n:'KELLY ITZEL ORTEGA GONZALEZ',        t:'MATUTINO',   seg:'6', ing:'2025-11-07', m:15449.00},
+  {n:'SONIA REZA CRUZ',                    t:'MATUTINO',   seg:'6', ing:'2025-08-07', m:5404.00},
+  {n:'MARLEM SANTOS CRUZ',                 t:'VESPERTINO', seg:'6', ing:'2026-03-11', m:4072.00},
+  {n:'ULISES HERNANDEZ GARCIA',            t:'VESPERTINO', seg:'6', ing:'2026-03-18', m:3979.00},
+  {n:'DANIEL VICTORIA ROMERO',             t:'VESPERTINO', seg:'6', ing:'2025-12-22', m:1270.00},
+  {n:'MIGUEL ANGEL MUÑOS ARCINIEGA',       t:'VESPERTINO', seg:'6', ing:'2026-05-16', m:444.00},
 ];
 
 let activeSeg = 'todos', activeTurno = 'todos', search = '';
 
+const $ = id => document.getElementById(id);
+
 function setSeg(s, btn) {
   activeSeg = s;
-  document.querySelectorAll('#seg-btns button').forEach(b => b.classList.remove('active'));
+  $('seg-btns').querySelectorAll('button').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   render();
 }
 function setTurno(t, btn) {
   activeTurno = t;
-  document.querySelectorAll('#turno-btns button').forEach(b => b.classList.remove('active'));
+  $('turno-btns').querySelectorAll('button').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   render();
 }
 function setSearch(v) { search = v.toLowerCase(); render(); }
 
-function fmt(n) { return '$' + Math.round(n).toLocaleString('es-MX'); }
-function fmtFecha(f) {
-  const [y,m,d] = f.split('-');
-  return `${d}/${m}/${y}`;
-}
+const fmt = n => '$' + Math.round(n).toLocaleString('es-MX');
+const fmtF = f => { const [y,m,d] = f.split('-'); return `${d}/${m}/${y}`; };
 
 function render() {
-  let data = raw.filter(r => activeSeg === 'todos' || r.segmento === activeSeg);
-  data = data.filter(r => activeTurno === 'todos' || r.turno === activeTurno);
-  if (search) data = data.filter(r => r.nombre.toLowerCase().includes(search));
+  let data = raw.filter(r =>
+    (activeSeg   === 'todos' || r.seg === activeSeg) &&
+    (activeTurno === 'todos' || r.t   === activeTurno) &&
+    (!search || r.n.toLowerCase().includes(search))
+  );
 
-  const totalMonto = data.reduce((s,r) => s+r.monto, 0);
-  const totalGest  = data.length;
-  const sinRec     = data.filter(r=>r.monto===0).length;
-  const promedio   = totalGest ? totalMonto/totalGest : 0;
+  // Metrics
+  const totM   = data.reduce((s,r) => s+r.m, 0);
+  const sinRec = data.filter(r => r.m === 0).length;
+  const prom   = data.length ? totM/data.length : 0;
+  const maxM   = Math.max(...data.map(r=>r.m), 1);
 
-  document.getElementById('metrics').innerHTML = `
-    <div class="metric"><div class="metric-label">Recuperación total</div><div class="metric-val">${fmt(totalMonto)}</div></div>
-    <div class="metric"><div class="metric-label">Gestores</div><div class="metric-val">${totalGest}</div></div>
-    <div class="metric"><div class="metric-label">Promedio por gestor</div><div class="metric-val">${fmt(promedio)}</div></div>
-    <div class="metric"><div class="metric-label">Sin recuperación</div><div class="metric-val red">${sinRec}</div></div>
+  $('metrics').innerHTML = `
+    <div class="metric"><div class="metric-lbl">Recuperación total</div><div class="metric-val">${fmt(totM)}</div></div>
+    <div class="metric"><div class="metric-lbl">Gestores</div><div class="metric-val">${data.length}</div></div>
+    <div class="metric"><div class="metric-lbl">Promedio</div><div class="metric-val">${fmt(prom)}</div></div>
+    <div class="metric"><div class="metric-lbl">Sin recuperación</div><div class="metric-val red">${sinRec}</div></div>
   `;
 
+  // Group by segment
   const map = {};
   data.forEach(r => {
-    const k = r.segmento;
-    if (!map[k]) map[k] = {segmento:k, list:[], totalMonto:0};
-    map[k].list.push(r); map[k].totalMonto += r.monto;
+    if (!map[r.seg]) map[r.seg] = {seg:r.seg, list:[], total:0};
+    map[r.seg].list.push(r);
+    map[r.seg].total += r.m;
   });
-
-  const groups = Object.values(map).sort((a,b) => b.totalMonto - a.totalMonto);
-  groups.forEach(g => g.list.sort((a,b) => b.monto - a.monto));
+  const groups = Object.values(map).sort((a,b) => b.total - a.total);
+  groups.forEach(g => g.list.sort((a,b) => b.m - a.m));
 
   if (!groups.length) {
-    document.getElementById('ranking-root').innerHTML = '<div class="no-results">No se encontraron resultados para tu búsqueda.</div>';
+    $('root').innerHTML = '<div class="no-results">No se encontraron resultados.</div>';
     return;
   }
 
+  const segMaxMap = {};
+  groups.forEach(g => { segMaxMap[g.seg] = Math.max(...g.list.map(r=>r.m), 1); });
+
   let html = '';
   groups.forEach(g => {
-    html += `<div class="section">
-      <div class="section-header">
-        <span class="sh-icon">📊</span>
-        <div class="sh-info">
-          <div class="sh-name">Segmento ${g.segmento}</div>
-          <div class="sh-stats">${fmt(g.totalMonto)} · ${g.list.length} gestores</div>
+    const pct = (g.total / totM * 100).toFixed(1);
+    html += `
+    <div class="seg-card">
+      <div class="seg-header">
+        <span class="seg-icon">📊</span>
+        <div class="seg-info">
+          <div class="seg-title">Segmento ${g.seg}</div>
+          <div class="seg-sub">${fmt(g.total)} · ${g.list.length} gestores · ${pct}% del total</div>
         </div>
-        <span class="sh-badge">SEG ${g.segmento}</span>
+        <span class="seg-badge">SEG ${g.seg}</span>
       </div>
       <table>
-        <thead><tr><th>#</th><th>Gestor</th><th>Recuperación</th><th>Ingreso</th><th>Turno</th></tr></thead>
+        <thead>
+          <tr>
+            <th style="width:36px">#</th>
+            <th>Gestor</th>
+            <th class="r">Recuperación</th>
+            <th class="bar">Distribución</th>
+            <th class="ing">Ingreso</th>
+            <th class="c">Turno</th>
+          </tr>
+        </thead>
         <tbody>`;
+
     g.list.forEach((r, i) => {
-      const rank = i+1;
-      const rowCls = rank===1?'top1':rank===2?'top2':rank===3?'top3':r.monto===0?'zero':'';
-      const bCls   = rank===1?'r1':rank===2?'r2':rank===3?'r3':r.monto===0?'rz':'rn';
-      const aCls   = rank<=3?'amt-top':r.monto===0?'amt-zero':'amt-mid';
-      const tCls   = r.turno==='MATUTINO' ? 'turno-mat' : 'turno-ves';
-      const tLabel = r.turno==='MATUTINO' ? 'Matutino' : 'Vespertino';
-      html += `<tr class="${rowCls}">
-        <td><span class="rank-badge ${bCls}">${rank}</span></td>
-        <td>${r.nombre}</td>
-        <td><span class="amt ${aCls}">${fmt(r.monto)}</span></td>
-        <td class="cnt">${fmtFecha(r.ingreso)}</td>
-        <td><span class="turno-pill ${tCls}">${tLabel}</span></td>
-      </tr>`;
+      const rank = i + 1;
+      const pctBar = (r.m / segMaxMap[g.seg] * 100).toFixed(1);
+      const rowCls = rank===1?'top1':rank===2?'top2':rank===3?'top3':r.m===0?'zero':'';
+      const bCls   = rank===1?'rb1':rank===2?'rb2':rank===3?'rb3':r.m===0?'rbz':'rbn';
+      const aCls   = rank<=3?'amt-top':r.m===0?'amt-zero':'amt-mid';
+      const tCls   = r.t==='MATUTINO'?'pill-mat':'pill-ves';
+      const tLbl   = r.t==='MATUTINO'?'☀️ Mat':'🌙 Ves';
+      const barCls = r.m===0?'zero':'';
+
+      html += `
+          <tr class="${rowCls}">
+            <td><span class="rb ${bCls}">${rank}</span></td>
+            <td>${r.n}</td>
+            <td class="r"><span class="amt ${aCls}">${fmt(r.m)}</span></td>
+            <td class="bar">
+              <div class="bar-wrap">
+                <div class="bar-bg"><div class="bar-fill ${barCls}" style="width:${pctBar}%"></div></div>
+              </div>
+            </td>
+            <td class="ing" style="color:var(--t-muted);font-size:12px">${fmtF(r.ing)}</td>
+            <td class="c"><span class="pill ${tCls}">${tLbl}</span></td>
+          </tr>`;
     });
+
     html += `</tbody></table></div>`;
   });
 
-  document.getElementById('ranking-root').innerHTML = html;
+  $('root').innerHTML = html;
 }
 
 render();
